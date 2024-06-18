@@ -64,4 +64,9 @@ public class BrowserUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public void waitForTitleToContain(String expectedResult){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.titleContains(expectedResult));
+    }
 }

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+
 public class Driver {
     protected static WebDriver driver = null;
 
@@ -21,6 +23,7 @@ public class Driver {
             default:
                 System.out.println("Wrong browser type");
         }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     public static WebDriver getDriver(){
