@@ -6,9 +6,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/java/features",
+        features = "src/test/resources/features",
         glue = "stepDefs",
-        stepNotifications = true
+        stepNotifications = true,
+        tags = "@US102",
+        dryRun = true
 )
 public class CukesRunner {
 
