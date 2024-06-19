@@ -9,7 +9,7 @@ import utils.ConfigReader;
 import utils.Driver;
 
 public class LoginSteps {
-    LoginPage loginPage;
+    private LoginPage loginPage;
 
     public LoginSteps() {
         loginPage = new LoginPage(Driver.getDriver());
@@ -21,8 +21,8 @@ public class LoginSteps {
         loginPage.loginAsAdmin();
     }
 
-    @Then("I title of the page should contain Home")
-    public void i_title_of_the_page_should_contain_home() {
+    @Then("Verify title of the page should contain Home")
+    public void verifyTitleOfThePageShouldContainHome() {
         new BrowserUtils(Driver.getDriver()).waitForTitleToContain("Home");
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Home"));
     }
