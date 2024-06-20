@@ -1,5 +1,6 @@
 package utils;
 
+import core.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -66,7 +67,7 @@ public class BrowserUtils {
     }
 
     public void waitForTitleToContain(String expectedResult){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.titleContains(expectedResult));
     }
 }

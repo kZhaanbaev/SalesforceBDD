@@ -1,4 +1,4 @@
-package utils;
+package core;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +8,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class Driver {
-    protected static WebDriver driver = null;
 
-    public static void initializeDriver(String browserType){
+    public WebDriver initializeDriver(String browserType){
+        WebDriver driver = null;
         switch (browserType.toLowerCase()){
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -24,11 +24,7 @@ public class Driver {
                 System.out.println("Wrong browser type");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
-    public static WebDriver getDriver(){
-        if (driver == null)
-            initializeDriver("chrome");
         return driver;
     }
+
 }

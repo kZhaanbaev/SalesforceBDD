@@ -1,29 +1,26 @@
 package stepDefs;
 
+import core.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import pages.LoginPage;
 import utils.BrowserUtils;
-import utils.ConfigReader;
-import utils.Driver;
 
 public class LoginSteps {
-    private LoginPage loginPage;
+    private TestContext testContext;
 
-    public LoginSteps() {
-        loginPage = new LoginPage(Driver.getDriver());
+    public LoginSteps(TestContext testContext){
+        this.testContext = testContext;
     }
 
     @Given("I login to salesforce app")
     public void i_login_to_salesforce_app() {
-        Driver.getDriver().get(ConfigReader.readProperty("config.properties", "url"));
-        loginPage.loginAsAdmin();
+        testContext.getLoginPage().loginAsAdmin();
     }
 
     @Then("Verify title of the page should contain Home")
     public void verifyTitleOfThePageShouldContainHome() {
-        new BrowserUtils(Driver.getDriver()).waitForTitleToContain("Home");
-        Assert.assertTrue(Driver.getDriver().getTitle().contains("Home"));
+        new BrowserUtils(testContext.getDriver()).waitForTitleToContain("Home");
+        Assert.assertTrue(testContext.getDriver().getTitle().contains("Home"));
     }
 }
