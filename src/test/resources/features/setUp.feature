@@ -21,3 +21,16 @@ Feature: Setup page Tests
     Then Verify "Email Template" option is visible
     Then Verify "Custom Tab" option is visible
     Then Verify "Flow" option is visible
+
+  @US104
+  Scenario: Most Recently Used view
+    Given I login to salesforce app
+    Then I verify "Marketing" option is visible under Most Recently Used section
+
+  @US105
+  Scenario: App Launcher options
+    Given I login to salesforce app
+    When I click "App Launcher" button
+    Then I should see option "Service"
+    Then I should see option "Community"
+    Then I should see option "Content"

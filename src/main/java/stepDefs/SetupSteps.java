@@ -4,7 +4,6 @@ import core.TestContext;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import utils.BrowserUtils;
 
 public class SetupSteps {
     private TestContext testContext;
@@ -29,7 +28,7 @@ public class SetupSteps {
 
     @Then("Verify title of the page is Home | Salesforce")
     public void verify_title_of_the_page_is_home_salesforce() {
-        new BrowserUtils(testContext.getDriver()).sleep(2000);
+        testContext.getBrowserUtils().sleep(2000);
         Assert.assertEquals("Home | Salesforce", testContext.getDriver().getTitle());
     }
 
@@ -58,6 +57,45 @@ public class SetupSteps {
                 break;
             case "flow":
                 Assert.assertTrue(testContext.getSetupPage().createFlowBtn.isDisplayed());
+                break;
+        }
+    }
+
+    @Then("I verify {string} option is visible under Most Recently Used section")
+    public void iVerifyOptionIsVisibleUnderMostRecentlyUsedSection(String option) {
+        switch (option.toLowerCase()) {
+            case "marketing":
+                Assert.assertTrue(testContext.getSetupPage().recentlyUse_Marketing.isDisplayed());
+                break;
+            case "community":
+                Assert.assertTrue(testContext.getSetupPage().recentlyUse_Community.isDisplayed());
+                break;
+            case "account layout":
+                Assert.assertTrue(testContext.getSetupPage().recentlyUse_AccountLayout.isDisplayed());
+                break;
+        }
+    }
+
+    @When("I click {string} button")
+    public void iClickButton(String button) {
+        switch (button.toLowerCase()) {
+            case "app launcher":
+                testContext.getSetupPage().appLauncherBtn.click();
+                break;
+        }
+    }
+
+    @Then("I should see option {string}")
+    public void iShouldSeeOption(String option) {
+        switch (option.toLowerCase()) {
+            case "service":
+                Assert.assertTrue(testContext.getSetupPage().serviceLaunchBtn.isDisplayed());
+                break;
+            case "community":
+                Assert.assertTrue(testContext.getSetupPage().communityLaunchBtn.isDisplayed());
+                break;
+            case "content":
+                Assert.assertTrue(testContext.getSetupPage().contentLaunchBtn.isDisplayed());
                 break;
         }
     }

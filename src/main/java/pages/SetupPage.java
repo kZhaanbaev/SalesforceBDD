@@ -37,4 +37,25 @@ public class SetupPage {
 
     @FindBy(id = "createFlowURL")
     public WebElement createFlowBtn;
+
+    @FindBy(xpath = "//tr//a[text()='Marketing']")
+    public WebElement recentlyUse_Marketing;
+
+    @FindBy(xpath = "//tr//a[text()='Community']")
+    public WebElement recentlyUse_Community;
+
+    @FindBy(xpath = "//tr//a[text()='Account Layout']")
+    public WebElement recentlyUse_AccountLayout;
+
+    @FindBy(xpath = "//button[@title='App Launcher']")
+    public WebElement appLauncherBtn;
+
+    @FindBy(xpath = "//a[@data-label='Service']")
+    public WebElement serviceLaunchBtn;
+
+    @FindBy(xpath = "//a[@data-label='Community']")
+    public WebElement communityLaunchBtn;
+
+    @FindBy(xpath = "//a[@data-label='Content']")
+    public WebElement contentLaunchBtn;
 }

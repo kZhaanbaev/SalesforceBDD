@@ -4,7 +4,6 @@ import core.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import utils.BrowserUtils;
 
 public class LoginSteps {
     private TestContext testContext;
@@ -20,7 +19,7 @@ public class LoginSteps {
 
     @Then("Verify title of the page should contain Home")
     public void verifyTitleOfThePageShouldContainHome() {
-        new BrowserUtils(testContext.getDriver()).waitForTitleToContain("Home");
+        testContext.getBrowserUtils().waitForTitleToContain("Home");
         Assert.assertTrue(testContext.getDriver().getTitle().contains("Home"));
     }
 }
