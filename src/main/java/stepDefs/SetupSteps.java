@@ -126,6 +126,23 @@ public class SetupSteps {
         }
     }
 
+    @Then("Verify following options are visible under Most Recently Used section:")
+    public void verify_following_options_are_visible_under_most_recently_used_section(List<String> list) {
+        for (String each: list){
+            switch (each.toLowerCase()) {
+                case "marketing":
+                    Assert.assertTrue(testContext.getSetupPage().recentlyUse_Marketing.isDisplayed());
+                    break;
+                case "community":
+                    Assert.assertTrue(testContext.getSetupPage().recentlyUse_Community.isDisplayed());
+                    break;
+                case "account layout":
+                    Assert.assertTrue(testContext.getSetupPage().recentlyUse_AccountLayout.isDisplayed());
+                    break;
+            }
+        }
+    }
+
     @When("I click {string} button")
     public void iClickButton(String button) {
         switch (button.toLowerCase()) {

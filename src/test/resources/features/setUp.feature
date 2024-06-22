@@ -44,6 +44,13 @@ Feature: Setup page Tests
     And I verify "Community" option is visible under Most Recently Used section
     And I verify "Account Layout" option is visible under Most Recently Used section
 
+  @US104-1
+  Scenario: Most Recently Used view with Data Table
+    Then Verify following options are visible under Most Recently Used section:
+      | Marketing      |
+      | Community      |
+      | Account Layout |
+
   @US105
   Scenario: App Launcher options
     When I click "App Launcher" button
