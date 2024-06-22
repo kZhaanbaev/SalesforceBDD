@@ -30,6 +30,11 @@ public class BrowserUtils {
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(by, numberOfElements));
     }
 
+    public void waitForElementToBeVisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
     public void waitForAlertToDisplay(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.alertIsPresent());
@@ -68,5 +73,15 @@ public class BrowserUtils {
     public void waitForTitleToContain(String expectedResult){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.titleContains(expectedResult));
+    }
+
+    public void waitForURLToContainText(String url){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains(url));
+    }
+
+    public void clickWithJs(WebElement element){
+        JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
+        jsExecutor.executeScript("arguments[0].click;", element);
     }
 }

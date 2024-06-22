@@ -1,19 +1,18 @@
 Feature: Setup page Tests
+  Background: Login to the app as an admin
+    Given I login to salesforce app
 
   @US102
   Scenario: Verify main 2 Tabs
-    Given I login to salesforce app
     Then Verify "Home" button is enabled
     Then Verify "Object Manager" button is enabled
 
   @US101
   Scenario: Title of the page test
-    Given I login to salesforce app
     Then Verify title of the page is Home | Salesforce
 
   @US103
   Scenario: Verify Create button options
-    Given I login to salesforce app
     When I click Create button
     Then Verify "User" option is visible
     Then Verify "Multiple Users" option is visible
@@ -24,13 +23,19 @@ Feature: Setup page Tests
 
   @US104
   Scenario: Most Recently Used view
-    Given I login to salesforce app
     Then I verify "Marketing" option is visible under Most Recently Used section
+    And I verify "Community" option is visible under Most Recently Used section
+    And I verify "Account Layout" option is visible under Most Recently Used section
 
   @US105
   Scenario: App Launcher options
-    Given I login to salesforce app
     When I click "App Launcher" button
     Then I should see option "Service"
-    Then I should see option "Community"
-    Then I should see option "Content"
+    And I should see option "Community"
+    And I should see option "Content"
+
+  @US106
+  Scenario: App Exchange View
+    When I click "App Launcher" button
+    And I click "View All" button
+    Then Verify "AppExchange" option is visible

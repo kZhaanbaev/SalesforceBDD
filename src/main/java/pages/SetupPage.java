@@ -50,7 +50,7 @@ public class SetupPage {
     @FindBy(xpath = "//button[@title='App Launcher']")
     public WebElement appLauncherBtn;
 
-    @FindBy(xpath = "//a[@data-label='Service']")
+    @FindBy(xpath = "//a[@data-label='Service']//p")
     public WebElement serviceLaunchBtn;
 
     @FindBy(xpath = "//a[@data-label='Community']")
@@ -58,4 +58,11 @@ public class SetupPage {
 
     @FindBy(xpath = "//a[@data-label='Content']")
     public WebElement contentLaunchBtn;
+
+    @FindBy(xpath = "//button[text()='View All']")
+    public WebElement viewAllLaunchBtn;
+
+    @FindBy(xpath = "//button[text()='Visit AppExchange']")
+    public WebElement appExchangeBtn;
+
 }

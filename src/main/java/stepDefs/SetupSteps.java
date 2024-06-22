@@ -58,6 +58,9 @@ public class SetupSteps {
             case "flow":
                 Assert.assertTrue(testContext.getSetupPage().createFlowBtn.isDisplayed());
                 break;
+            case "appexchange":
+                Assert.assertTrue(testContext.getSetupPage().appExchangeBtn.isDisplayed());
+                break;
         }
     }
 
@@ -82,6 +85,14 @@ public class SetupSteps {
             case "app launcher":
                 testContext.getSetupPage().appLauncherBtn.click();
                 break;
+            case "view all":
+                testContext.getBrowserUtils().waitForElementToBeVisible(testContext.getSetupPage().viewAllLaunchBtn);
+                testContext.getSetupPage().viewAllLaunchBtn.click();
+                break;
+            case "service":
+                testContext.getSetupPage().serviceLaunchBtn.click();
+                break;
+
         }
     }
 
