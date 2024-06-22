@@ -13,7 +13,25 @@ public class HomeSteps {
 
     @Then("Verify URL is ending with {string}")
     public void verify_url_is_ending_with(String url) {
-        testContext.getBrowserUtils().waitForURLToContainText(url);
         Assert.assertTrue(testContext.getDriver().getCurrentUrl().endsWith(url));
     }
+
+    @Then("Verify {string} navigation button is visible")
+    public void verifyNavigationButtonIsVisible(String button) {
+        switch (button.toLowerCase()) {
+            case "accounts":
+                Assert.assertTrue(testContext.getHomePage().accountsNavBtn.isDisplayed());
+                break;
+            case "contacts":
+                Assert.assertTrue(testContext.getHomePage().contactsNavBtn.isDisplayed());
+                break;
+            case "cases":
+                Assert.assertTrue(testContext.getHomePage().casesNavBtn.isDisplayed());
+                break;
+            default:
+                Assert.fail(button + " navigation button was not found");
+        }
+    }
+
+
 }

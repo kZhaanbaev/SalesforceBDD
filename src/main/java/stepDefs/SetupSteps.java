@@ -5,6 +5,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.List;
+
 public class SetupSteps {
     private TestContext testContext;
 
@@ -23,6 +25,22 @@ public class SetupSteps {
                 break;
             default:
                 Assert.fail();
+        }
+    }
+
+    @Then("Verify following buttons are enabled")
+    public void verify_following_buttons_are_enabled(List<String> buttons) {
+        for(String each: buttons){
+            switch (each.toLowerCase()) {
+                case "home":
+                    Assert.assertTrue(testContext.getSetupPage().homeNavBtn.isEnabled());
+                    break;
+                case "object manager":
+                    Assert.assertTrue(testContext.getSetupPage().objManagerBtn.isEnabled());
+                    break;
+                default:
+                    Assert.fail();
+            }
         }
     }
 
@@ -64,6 +82,35 @@ public class SetupSteps {
         }
     }
 
+    @Then("Verify following options are visible")
+    public void verifyFollowingOptionsAreVisible(List<String> list) {
+        for(String each: list){
+            switch (each.toLowerCase()) {
+                case "user":
+                    Assert.assertTrue(testContext.getSetupPage().createUserBtn.isDisplayed());
+                    break;
+                case "multiple users":
+                    Assert.assertTrue(testContext.getSetupPage().createMultipleUserBtn.isDisplayed());
+                    break;
+                case "custom objects":
+                    Assert.assertTrue(testContext.getSetupPage().createCustomObjBtn.isDisplayed());
+                    break;
+                case "email template":
+                    Assert.assertTrue(testContext.getSetupPage().createEmailTemplateBtn.isDisplayed());
+                    break;
+                case "custom tab":
+                    Assert.assertTrue(testContext.getSetupPage().createCustomTabBtn.isDisplayed());
+                    break;
+                case "flow":
+                    Assert.assertTrue(testContext.getSetupPage().createFlowBtn.isDisplayed());
+                    break;
+                case "appexchange":
+                    Assert.assertTrue(testContext.getSetupPage().appExchangeBtn.isDisplayed());
+                    break;
+            }
+        }
+    }
+
     @Then("I verify {string} option is visible under Most Recently Used section")
     public void iVerifyOptionIsVisibleUnderMostRecentlyUsedSection(String option) {
         switch (option.toLowerCase()) {
@@ -91,6 +138,7 @@ public class SetupSteps {
                 break;
             case "service":
                 testContext.getSetupPage().serviceLaunchBtn.click();
+                testContext.getBrowserUtils().waitForURLToContainText("page/home");
                 break;
 
         }
@@ -110,4 +158,6 @@ public class SetupSteps {
                 break;
         }
     }
+
+
 }

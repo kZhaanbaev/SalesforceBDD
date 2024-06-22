@@ -7,6 +7,12 @@ Feature: Setup page Tests
     Then Verify "Home" button is enabled
     Then Verify "Object Manager" button is enabled
 
+  @US102-1
+  Scenario: Verify main 2 Tabs using Data Table
+    Then Verify following buttons are enabled
+      | Home           |
+      | Object Manager |
+
   @US101
   Scenario: Title of the page test
     Then Verify title of the page is Home | Salesforce
@@ -20,6 +26,17 @@ Feature: Setup page Tests
     Then Verify "Email Template" option is visible
     Then Verify "Custom Tab" option is visible
     Then Verify "Flow" option is visible
+
+  @US103-1
+  Scenario: Verify Create button options using Data Table
+    When I click Create button
+    Then Verify following options are visible
+      | User           |
+      | Multiple Users |
+      | Custom Object  |
+      | Email Template |
+      | Custom Tab     |
+      | Flow           |
 
   @US104
   Scenario: Most Recently Used view
