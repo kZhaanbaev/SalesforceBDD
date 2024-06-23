@@ -8,3 +8,9 @@ Feature: Account page tests
   Scenario: Header fields of an Account are populated
     When I click "Accounts" button
     And I click "first" item from recently view window
+    Then Verify following headers are populated:
+      | Type          |
+      | Phone         |
+      | Website       |
+      | Account Owner |
+      | Industry      |

@@ -160,6 +160,7 @@ public class SetupSteps {
             case "accounts":
                 testContext.getHomePage().accountsNavBtn.click();
                 break;
+            default: Assert.fail();
         }
     }
 
