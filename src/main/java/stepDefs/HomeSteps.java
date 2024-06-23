@@ -1,6 +1,7 @@
 package stepDefs;
 
 import core.TestContext;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
@@ -32,6 +33,7 @@ public class HomeSteps {
                 Assert.fail(button + " navigation button was not found");
         }
     }
+
 
 
 }

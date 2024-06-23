@@ -157,7 +157,9 @@ public class SetupSteps {
                 testContext.getSetupPage().serviceLaunchBtn.click();
                 testContext.getBrowserUtils().waitForURLToContainText("page/home");
                 break;
-
+            case "accounts":
+                testContext.getHomePage().accountsNavBtn.click();
+                break;
         }
     }
 

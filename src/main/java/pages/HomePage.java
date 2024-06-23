@@ -13,7 +13,7 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//a[@title='Accounts']")
+    @FindBy(xpath = "//a[@title='Accounts']/parent::one-app-nav-bar-item-root")
     public WebElement accountsNavBtn;
 
     @FindBy(xpath = "//a[@title='Contacts']")
