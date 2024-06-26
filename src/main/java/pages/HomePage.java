@@ -16,10 +16,16 @@ public class HomePage {
     @FindBy(xpath = "//a[@title='Accounts']/parent::one-app-nav-bar-item-root")
     public WebElement accountsNavBtn;
 
-    @FindBy(xpath = "//a[@title='Contacts']")
+    @FindBy(xpath = "//a[@title='Contacts']/parent::one-app-nav-bar-item-root")
     public WebElement contactsNavBtn;
 
-    @FindBy(xpath = "//a[@title='Cases']")
+    @FindBy(xpath = "//a[@title='Cases']/parent::one-app-nav-bar-item-root")
     public WebElement casesNavBtn;
+
+    @FindBy(xpath = "//a[@title='Reports']/parent::one-app-nav-bar-item-root")
+    public WebElement reportsNavBtn;
+
+    @FindBy(xpath = "//a[@title='Dashboards']/parent::one-app-nav-bar-item-root")
+    public WebElement dashboardsNavBtn;
 
 }

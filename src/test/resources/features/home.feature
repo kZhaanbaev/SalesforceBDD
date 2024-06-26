@@ -14,3 +14,23 @@ Feature: Home page Tests
     Then Verify "Accounts" navigation button is visible
     Then Verify "Contacts" navigation button is visible
     Then Verify "Cases" navigation button is visible
+
+  @US111
+  Scenario: Home page navigation buttons
+    Then Validate following nav buttons take you to correct page containing name of the button in URL:
+      | Accounts   |
+      | Contacts   |
+      | Cases      |
+      | Reports    |
+      | Dashboards |
+
+  @US111-1
+  Scenario Outline: Home page navigation buttons
+    Then Validate "<button name>" nav button takes you to correct page containing name of the button in URL:
+    Examples:
+      |button name |
+      | Accounts   |
+      | Contacts   |
+      | Cases      |
+      | Reports    |
+      | Dashboards |

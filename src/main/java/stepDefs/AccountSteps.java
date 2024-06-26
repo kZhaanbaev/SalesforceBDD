@@ -3,9 +3,11 @@ package stepDefs;
 import core.TestContext;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 import java.util.List;
+import java.util.Map;
 
 public class AccountSteps {
     private TestContext testContext;
@@ -46,5 +48,19 @@ public class AccountSteps {
                 default: Assert.fail("Header was not found");
             }
         }
+    }
+
+    @When("I create a new Account with following fields populated:")
+    public void i_create_a_new_account_with_following_fields_populated(Map<String, String> map) {
+        testContext.getAccountPage().createNewAccount(
+                map.get("accountName"),
+                map.get("accountNumber"),
+                map.get("type")
+        );
+    }
+
+    @Then("Verify Account header is {string}")
+    public void verifyAccountHeaderIs(String accountName) {
+        Assert.assertEquals(accountName, testContext.getAccountPage().accountHeaderText.getText());
     }
 }
