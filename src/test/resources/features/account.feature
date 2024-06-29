@@ -1,3 +1,4 @@
+@regression @account-tests
 Feature: Account page tests
   Background: Navigate to Accounts page
     Given I login to salesforce app
@@ -5,7 +6,7 @@ Feature: Account page tests
     And I click "Service" button
     And I click "Accounts" button
 
-  @US109
+  @US109 @smoke @regression @mini-regression @ad-hoc @temp
   Scenario: Header fields of an Account are populated
     And I click "first" item from recently view window
     Then Verify following headers are populated:
@@ -15,7 +16,7 @@ Feature: Account page tests
       | Account Owner |
       | Industry      |
 
-  @US110
+  @US110 @temp
   Scenario: Create a new Account
     When I create a new Account with following fields populated:
       | accountName   | Account - Kuba |

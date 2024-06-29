@@ -1,10 +1,7 @@
 package core;
 
 import org.openqa.selenium.WebDriver;
-import pages.AccountPage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.SetupPage;
+import pages.*;
 import utils.BrowserUtils;
 
 public class TestContext {
@@ -14,6 +11,7 @@ public class TestContext {
     private SetupPage setupPage;
     private HomePage homePage;
     private AccountPage accountPage;
+    private OppPage oppPage;
 
     public TestContext() {
         driver = new Driver().initializeDriver("chrome");
@@ -22,6 +20,7 @@ public class TestContext {
         setupPage = new SetupPage(driver);
         homePage = new HomePage(driver);
         accountPage = new AccountPage(driver);
+        oppPage = new OppPage(driver);
     }
 
     public WebDriver getDriver() {
@@ -46,6 +45,10 @@ public class TestContext {
 
     public AccountPage getAccountPage() {
         return this.accountPage;
+    }
+
+    public OppPage getOppPage() {
+        return this.oppPage;
     }
 
 }

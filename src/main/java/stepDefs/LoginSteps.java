@@ -19,7 +19,7 @@ public class LoginSteps {
 
     @Then("Verify title of the page should contain Home")
     public void verifyTitleOfThePageShouldContainHome() {
-        testContext.getBrowserUtils().waitForTitleToContain("Home");
+        testContext.getBrowserUtils().Waits.waitForTitleToContain("Home");
         Assert.assertTrue(testContext.getDriver().getTitle().contains("Home"));
     }
 }

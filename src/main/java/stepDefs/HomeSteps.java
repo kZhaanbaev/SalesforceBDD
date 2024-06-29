@@ -1,7 +1,6 @@
 package stepDefs;
 
 import core.TestContext;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
@@ -43,27 +42,27 @@ public class HomeSteps {
             switch (each.toLowerCase()){
                 case "accounts":
                     testContext.getHomePage().accountsNavBtn.click();
-                    testContext.getBrowserUtils().waitForURLToContainText("Account");
+                    testContext.getBrowserUtils().Waits.waitForURLToContainText("Account");
                     Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Account"));
                     break;
                 case "contacts":
                     testContext.getHomePage().contactsNavBtn.click();
-                    testContext.getBrowserUtils().waitForURLToContainText("Contact");
+                    testContext.getBrowserUtils().Waits.waitForURLToContainText("Contact");
                     Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Contact"));
                     break;
                 case "cases":
                     testContext.getHomePage().casesNavBtn.click();
-                    testContext.getBrowserUtils().waitForURLToContainText("Case");
+                    testContext.getBrowserUtils().Waits.waitForURLToContainText("Case");
                     Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Case"));
                     break;
                 case "reports":
                     testContext.getHomePage().reportsNavBtn.click();
-                    testContext.getBrowserUtils().waitForURLToContainText("Report");
+                    testContext.getBrowserUtils().Waits.waitForURLToContainText("Report");
                     Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Report"));
                     break;
                 case "dashboards":
                     testContext.getHomePage().dashboardsNavBtn.click();
-                    testContext.getBrowserUtils().waitForURLToContainText("Dashboard");
+                    testContext.getBrowserUtils().Waits.waitForURLToContainText("Dashboard");
                     Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Dashboard"));
                     break;
                 default: Assert.fail("URL was not correct");
@@ -76,30 +75,31 @@ public class HomeSteps {
         switch (navButton.toLowerCase()){
             case "accounts":
                 testContext.getHomePage().accountsNavBtn.click();
-                testContext.getBrowserUtils().waitForURLToContainText("Account");
+                testContext.getBrowserUtils().Waits.waitForURLToContainText("Account");
                 Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Account"));
                 break;
             case "contacts":
                 testContext.getHomePage().contactsNavBtn.click();
-                testContext.getBrowserUtils().waitForURLToContainText("Contact");
+                testContext.getBrowserUtils().Waits.waitForURLToContainText("Contact");
                 Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Contact"));
                 break;
             case "cases":
                 testContext.getHomePage().casesNavBtn.click();
-                testContext.getBrowserUtils().waitForURLToContainText("Case");
+                testContext.getBrowserUtils().Waits.waitForURLToContainText("Case");
                 Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Case"));
                 break;
             case "reports":
                 testContext.getHomePage().reportsNavBtn.click();
-                testContext.getBrowserUtils().waitForURLToContainText("Report");
+                testContext.getBrowserUtils().Waits.waitForURLToContainText("Report");
                 Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Report"));
                 break;
             case "dashboards":
                 testContext.getHomePage().dashboardsNavBtn.click();
-                testContext.getBrowserUtils().waitForURLToContainText("Dashboard");
+                testContext.getBrowserUtils().Waits.waitForURLToContainText("Dashboard");
                 Assert.assertTrue(testContext.getDriver().getCurrentUrl().contains("Dashboard"));
                 break;
             default: Assert.fail("URL was not correct");
         }
+        testContext.getBrowserUtils().Waits.waitForPageToLoad();
     }
 }

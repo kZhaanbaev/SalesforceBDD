@@ -150,12 +150,12 @@ public class SetupSteps {
                 testContext.getSetupPage().appLauncherBtn.click();
                 break;
             case "view all":
-                testContext.getBrowserUtils().waitForElementToBeVisible(testContext.getSetupPage().viewAllLaunchBtn);
+                testContext.getBrowserUtils().Waits.waitForElementToBeVisible(testContext.getSetupPage().viewAllLaunchBtn);
                 testContext.getSetupPage().viewAllLaunchBtn.click();
                 break;
             case "service":
                 testContext.getSetupPage().serviceLaunchBtn.click();
-                testContext.getBrowserUtils().waitForURLToContainText("page/home");
+                testContext.getBrowserUtils().Waits.waitForURLToContainText("page/home");
                 break;
             case "accounts":
                 testContext.getHomePage().accountsNavBtn.click();
