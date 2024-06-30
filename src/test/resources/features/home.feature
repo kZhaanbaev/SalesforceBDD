@@ -1,3 +1,4 @@
+@homeTests
 Feature: Home page Tests
 
   Background: Navigating to home page
@@ -13,7 +14,7 @@ Feature: Home page Tests
   Scenario: Navigation buttons on home page
     Then Verify "Accounts" navigation button is visible
     Then Verify "Contacts" navigation button is visible
-    Then Verify "Cases" navigation button is visible
+    Then Verify "Kuba" navigation button is visible
 
   @US111
   Scenario: Home page navigation buttons

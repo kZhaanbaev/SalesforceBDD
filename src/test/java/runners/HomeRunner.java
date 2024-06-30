@@ -9,14 +9,14 @@ import org.junit.runner.RunWith;
         plugin = {
                 "pretty",
                 "html:target/report.html",
-                "json:target/cucumber-reports/cucumber.json"
+                "json:target/cucumber-reports/cucumber2.json"
         },
         features = "src/test/resources/features",
         glue = "stepDefs",
         stepNotifications = true,
-        tags = "@accountTests",
+        tags = "@homeTests",
         dryRun = false
 )
-public class CukesRunner {
+public class HomeRunner {
 
 }

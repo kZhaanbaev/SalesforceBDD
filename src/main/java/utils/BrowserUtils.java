@@ -1,11 +1,15 @@
 package utils;
 
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Base64;
+import java.util.Calendar;
 import java.util.Set;
 
 public class BrowserUtils {
@@ -164,4 +168,46 @@ public class BrowserUtils {
             wait.until(ExpectedConditions.alertIsPresent());
         }
     }
+
+    public String getLogTime(){
+        String format = "yyy-MM-dd HH:mm:ss";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        Calendar calendar = Calendar.getInstance();
+        return dateFormat.format(calendar.getTime());
+    }
+
+    public void logFailScreenshot(Scenario scenario){
+        final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+
+        // Encode the screenshot as a Base64 string
+        String base64Screenshot = Base64.getEncoder().encodeToString(screenshot);
+
+        // Create HTML content to display the screenshot with a smaller size
+        String htmlContent = "<div style=\"display: flex; justify-content: center;\">" +
+                "<img src=\"data:image/png;base64," + base64Screenshot + "\" " +
+                "style=\"width: 900px; height: auto; cursor: pointer;\" " +
+                "onclick=\"showImage(this.src)\" />" +
+                "</div>" +
+                "<div id=\"modal\" style=\"display:none; position:fixed; z-index:1; padding-top:10px; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgb(0,0,0); background-color:rgba(0,0,0,0.9);\">" +
+                "<span style=\"position:absolute; top:20px; right:45px; color:#f1f1f1; font-size:40px; font-weight:bold; cursor:pointer;\" onclick=\"closeModal()\">&times;</span>" +
+                "<img style=\"margin:auto; display:block; width:80%; max-width:1200px;\" id=\"modal-image\">" +
+                "</div>" +
+                "<script>" +
+                "function showImage(src) {" +
+                "  var modal = document.getElementById('modal');" +
+                "  var modalImg = document.getElementById('modal-image');" +
+                "  modal.style.display = 'block';" +
+                "  modalImg.src = src;" +
+                "}" +
+                "function closeModal() {" +
+                "  var modal = document.getElementById('modal');" +
+                "  modal.style.display = 'none';" +
+                "}" +
+                "</script>";
+
+        // Attach the HTML content to the scenario
+        scenario.attach(htmlContent.getBytes(), "text/html", getLogTime() + "  FAIL: " + scenario.getName());
+    }
+
+
 }

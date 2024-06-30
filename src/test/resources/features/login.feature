@@ -1,3 +1,4 @@
+@loginTests
 Feature: Login Page Tests
 
   @US100

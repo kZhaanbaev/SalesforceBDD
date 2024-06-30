@@ -1,4 +1,4 @@
-@regression @account-tests
+@regression @accountTests
 Feature: Account page tests
   Background: Navigate to Accounts page
     Given I login to salesforce app

@@ -3,6 +3,7 @@ package stepDefs;
 import core.TestContext;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import utils.ConfigReader;
 
 public class Hooks {
@@ -18,7 +19,10 @@ public class Hooks {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown(Scenario scenario){
+        if (scenario.isFailed()){
+            testContext.getBrowserUtils().logFailScreenshot(scenario);
+        }
         testContext.getDriver().quit();
     }
 }
