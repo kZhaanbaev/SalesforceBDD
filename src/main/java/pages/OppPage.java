@@ -7,6 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.xml.xpath.XPath;
+import java.util.ArrayList;
+import java.util.List;
+
 public class OppPage {
     WebDriver driver;
 
@@ -48,6 +52,34 @@ public class OppPage {
     @FindBy(xpath = "(//div[@class='slds-grid']/a[contains(@href, 'Account')])[2]//slot//slot")
     public WebElement accountNameField_detailsView;
 
+    @FindBy(xpath = "//li[@data-name = 'Prospecting']/a")
+    public WebElement prospectingOppStage;
+
+    @FindBy(xpath = "//li[@data-name='Qualification']")
+    public WebElement qualificationOppStage;
+
+@FindBy(xpath = "//ul[@class = 'slds-path__nav']//li")
+ public List<WebElement> listOfStages;
+
+    @FindBy(xpath = "//div[@data-aura-class = 'runtime_sales_pathassistantPathAssistantHeader']/button")
+    public WebElement markAsCurrentStageBTn;
+
+    @FindBy(xpath = "//div[@data-aura-class = 'runtime_sales_pathassistantPathAssistantHeader']/button")
+    public WebElement markStageAsCompleteBtn;
+
+    @FindBy(xpath = "//div[@class = 'slds-card__footer']/parent::a")
+    public WebElement viewAllStageHistoryBTn;
+
+    @FindBy(xpath = "//div[@data-aura-class ='forceListViewManagerGrid']//table[@aria-label = 'Stage History']" +
+            "//th[1][not(@class='errorColumnHeader')]")
+    public List<WebElement> stageHistoryRows;
+
+    @FindBy(xpath = "//div[contains(@class, 'recordCell')]/span[text() = 'Qualification']")
+    public WebElement qualificationStageHistoryField;
+
+    @FindBy(xpath = "//div[contains(@class, 'recordCell')]/span[text() = 'Prospecting']")
+    public WebElement prospectingStageHistoryField;
+
     public void createNewOpp(String oppName, String closeDate, String accountName, String stage){
         createNewOppBtn.click();
         newOppName_inputField.sendKeys(oppName);
@@ -65,5 +97,13 @@ public class OppPage {
         driver.findElement(By.xpath("//lightning-base-combobox-formatted-text[@title='" + accountName + "']")).click();
 
         saveBtn.click();
+    }
+
+    public List<String> getStageHistory() {
+        List<String> stages = new ArrayList<>();
+        for (WebElement row : stageHistoryRows) {
+            stages.add(row.getText());
+        }
+        return stages;
     }
 }
