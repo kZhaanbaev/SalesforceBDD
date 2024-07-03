@@ -160,8 +160,14 @@ public class SetupSteps {
             case "accounts":
                 testContext.getHomePage().accountsNavBtn.click();
                 break;
+            case "all opportunities":
+                testContext.getHomePage().allOpportunitiesBtn.click();
+                break;
+
             default: Assert.fail();
         }
+        testContext.getBrowserUtils().sleep(5000);
+
     }
 
     @Then("I should see option {string}")

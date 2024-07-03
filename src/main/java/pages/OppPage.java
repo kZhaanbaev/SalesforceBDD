@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class OppPage {
     WebDriver driver;
 
@@ -66,4 +68,13 @@ public class OppPage {
 
         saveBtn.click();
     }
+    @FindBy(xpath = "//button[@title='Edit Order Number']")
+    public WebElement oppOrderNumberEditBtn;
+    @FindBy(xpath = "//input[@name='OrderNumber__c']")
+    public WebElement oppOrderNumberInputField;
+    @FindBy(xpath = "//records-record-layout-item[@field-label='Order Number']//span[@class='test-id__field-value slds-form-element__static slds-grow word-break-ie11']")
+    public WebElement oppOrderNumberOutputField;
+    @FindBy(xpath = "//button[@name='SaveEdit']")
+    public WebElement oppSaveEditBtn;
+
 }

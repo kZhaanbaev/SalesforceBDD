@@ -71,4 +71,17 @@ public class AccountPage {
 
         saveBtn.click();
     }
+    @FindBy(xpath = "//a[@class='rowActionsPlaceHolder slds-button slds-button--icon-x-small slds-button_icon-x-small slds-button--icon-border-filled slds-button_icon-border-filled keyboardMode--trigger']")
+    public List<WebElement> accountDropDownBtn;
+    @FindBy(xpath = "//a[@title='Edit']")
+    public List<WebElement> accountEditBtn;
+    @FindBy(xpath = "//a[@data-refid='recordId']")
+    public List<WebElement> recentlyViewedAccountName;
+
+    public void editNewAccount(String accountName){
+        newAccountName.clear();
+        newAccountName.sendKeys(accountName);
+        saveBtn.click();
+    }
+
 }

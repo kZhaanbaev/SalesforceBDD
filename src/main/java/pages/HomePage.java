@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.w3c.dom.html.HTMLInputElement;
 
 public class HomePage {
     private WebDriver driver;
@@ -15,6 +16,8 @@ public class HomePage {
 
     @FindBy(xpath = "//a[@title='Accounts']/parent::one-app-nav-bar-item-root")
     public WebElement accountsNavBtn;
+    @FindBy(xpath = "//a[@title='All Opportunities | Opportunities']/parent::one-app-nav-bar-item-root")
+    public WebElement allOpportunitiesBtn;
 
     @FindBy(xpath = "//a[@title='Contacts']/parent::one-app-nav-bar-item-root")
     public WebElement contactsNavBtn;

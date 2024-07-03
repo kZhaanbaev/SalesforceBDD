@@ -23,3 +23,19 @@ Feature: Account page tests
       | accountNumber | 32439282       |
       | type          | Prospect       |
     Then Verify Account header is "Account - Kuba"
+
+  @US116 @temp
+  Scenario: Edit fields from drop down in Account
+    When I create a new Account with following fields populated:
+      | accountName   | Account - Test |
+      | accountNumber | 32439282       |
+      | type          | Prospect       |
+    And I click "Accounts" button
+    Then Verify Account title is "Account - Test"
+    And I click "first" drop-down button of new account
+    And I click the "Edit" button
+    And I edit new Accounts following fields:
+      | accountName   | Account - Aliia |
+    Then Verify Account title is "Account - Aliia"
+
+
