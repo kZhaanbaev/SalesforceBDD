@@ -20,7 +20,7 @@ public class TestContext {
         setupPage = new SetupPage(driver);
         homePage = new HomePage(driver);
         accountPage = new AccountPage(driver);
-        oppPage = new OppPage(driver);
+        oppPage = new OppPage(this);
     }
 
     public WebDriver getDriver() {

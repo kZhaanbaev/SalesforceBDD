@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import javax.swing.*;
 import java.security.Key;
@@ -70,9 +71,7 @@ public class OppSteps {
                 testContext.getBrowserUtils().clickWithJs(testContext.getOppPage().markAsCurrentStageBTn);
                 break;
             case "Closed":
-              for(WebElement stages: testContext.getOppPage().listOfStages){
-                  testContext.getOppPage().markStageAsCompleteBtn.click();
-              }
+              testContext.getOppPage().moveStageToClosed();
                break;
             default:
                 Assert.fail();
@@ -82,14 +81,12 @@ public class OppSteps {
     public void iShouldSeeTheFollowingStagesDisplayedUnderStageHistorySection(List<String> expectedStages) {
 
         testContext.getBrowserUtils().Waits.waitForElementToBeVisibleWhileScrolling
-                (testContext.getOppPage().viewAllStageHistoryBTn, 3);
+                (testContext.getOppPage().viewAllStageHistoryBTn, 250);
         testContext.getOppPage().viewAllStageHistoryBTn.click();
 
         List<String> actualStages = testContext.getOppPage().getStageHistory();
 
-        for(String stages: expectedStages){
-           Assert.assertTrue(actualStages.containsAll(expectedStages));
-        }
+        Assert.assertTrue(actualStages.containsAll(expectedStages));
 
     }
 }

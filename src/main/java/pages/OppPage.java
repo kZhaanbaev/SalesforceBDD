@@ -1,11 +1,14 @@
 package pages;
 
+import core.TestContext;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import utils.BrowserUtils;
 
 import javax.xml.xpath.XPath;
 import java.util.ArrayList;
@@ -14,10 +17,14 @@ import java.util.List;
 public class OppPage {
     WebDriver driver;
 
-    public OppPage(WebDriver driver){
-        this.driver = driver;
+    private TestContext testContext;
+
+    public OppPage(TestContext testContext){
+        this.testContext = testContext;
+        this.driver = testContext.getDriver();
         PageFactory.initElements(driver, this);
     }
+
 
     @FindBy(xpath = "//div[@aria-label='Favorite this item']/following-sibling::div/button")
     public WebElement favListBtn;
@@ -52,42 +59,44 @@ public class OppPage {
     @FindBy(xpath = "(//div[@class='slds-grid']/a[contains(@href, 'Account')])[2]//slot//slot")
     public WebElement accountNameField_detailsView;
 
-    @FindBy(xpath = "//li[@data-name = 'Prospecting']/a")
-    public WebElement prospectingOppStage;
-
     @FindBy(xpath = "//li[@data-name='Qualification']")
     public WebElement qualificationOppStage;
 
-@FindBy(xpath = "//ul[@class = 'slds-path__nav']//li")
- public List<WebElement> listOfStages;
+    @FindBy(xpath = "//ul[@class = 'slds-path__nav']//li")
+    public List<WebElement> listOfStages;
 
     @FindBy(xpath = "//div[@data-aura-class = 'runtime_sales_pathassistantPathAssistantHeader']/button")
     public WebElement markAsCurrentStageBTn;
 
-    @FindBy(xpath = "//div[@data-aura-class = 'runtime_sales_pathassistantPathAssistantHeader']/button")
-    public WebElement markStageAsCompleteBtn;
+    @FindBy(xpath = "//lightning-icon/parent::button[contains(@class, 'mark-complete stepAction current uiButton')]")
+    public WebElement markAsCompleteBtn;
+
+    @FindBy(xpath = "//div[contains(@class, 'pathassistantPathAssistantHeader')]/button")
+    public WebElement selectClosedStageBtn;
 
     @FindBy(xpath = "//div[@class = 'slds-card__footer']/parent::a")
     public WebElement viewAllStageHistoryBTn;
 
-    @FindBy(xpath = "//div[@data-aura-class ='forceListViewManagerGrid']//table[@aria-label = 'Stage History']" +
-            "//th[1][not(@class='errorColumnHeader')]")
+    @FindBy(xpath = "//select[@class = 'stepAction required-field select']")
+    public WebElement selectClosedStageStatus;
+
+    @FindBy(xpath = "//button[@title = 'Save']")
+    public WebElement saveClosedStageStatusBtn;
+
+    @FindBy(xpath = "//div[@data-aura-class ='forceListViewManagerGrid']//table[@aria-label = 'Stage History']//tbody//th[1]")
     public List<WebElement> stageHistoryRows;
 
-    @FindBy(xpath = "//div[contains(@class, 'recordCell')]/span[text() = 'Qualification']")
-    public WebElement qualificationStageHistoryField;
 
-    @FindBy(xpath = "//div[contains(@class, 'recordCell')]/span[text() = 'Prospecting']")
-    public WebElement prospectingStageHistoryField;
 
-    public void createNewOpp(String oppName, String closeDate, String accountName, String stage){
+    public void createNewOpp(String oppName, String closeDate, String accountName, String stage) {
         createNewOppBtn.click();
         newOppName_inputField.sendKeys(oppName);
         newCloseDate_inputField.sendKeys(closeDate);
         selectStageBtn.click();
 
-        switch (stage.toLowerCase()){
-            case "prospecting": selectTypeOption_Prospecting.click();
+        switch (stage.toLowerCase()) {
+            case "prospecting":
+                selectTypeOption_Prospecting.click();
                 break;
             default:
                 Assert.fail("Type was not found");
@@ -105,5 +114,25 @@ public class OppPage {
             stages.add(row.getText());
         }
         return stages;
+    }
+
+    public void moveStageToClosed() {
+
+        for (WebElement stageElement : listOfStages) {
+            if (stageElement.getText().equalsIgnoreCase("Negotiation/Review")) {
+                testContext.getBrowserUtils().Waits.waitForElementToBeVisible(markAsCompleteBtn);
+                testContext.getBrowserUtils().clickWithJs(markAsCompleteBtn);
+                testContext.getBrowserUtils().Waits.waitForPageToLoad();
+                testContext.getBrowserUtils().Waits.waitForElementToBeVisible(selectClosedStageStatus);
+                Select select = new Select(selectClosedStageStatus);
+                select.selectByVisibleText("Closed Won");
+                saveClosedStageStatusBtn.click();
+                break;
+            } else {
+                testContext.getBrowserUtils().Waits.waitForElementToBeVisible(markAsCompleteBtn);
+                testContext.getBrowserUtils().clickWithJs(markAsCompleteBtn);
+            }
+
+        }
     }
 }

@@ -61,7 +61,7 @@ public class BrowserUtils {
 
     public void clickWithJs(WebElement element){
         JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
-        jsExecutor.executeScript("arguments[0].click;", element);
+        jsExecutor.executeScript("arguments[0].click();", element);
     }
 
     public class ElementWaits {
